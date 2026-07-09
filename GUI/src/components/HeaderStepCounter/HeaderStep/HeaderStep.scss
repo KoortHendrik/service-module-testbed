@@ -1,0 +1,25 @@
+@import 'src/styles/tools/color';
+
+.header-step {
+  background-color: white;
+  border-radius: 50%;
+  color: get-color(black-coral-10);
+  font-weight: 700;
+  height: 20px;
+  text-align: center;
+  width: 20px;
+}
+
+.active-step {
+  background-color: get-color(sapphire-blue-10);
+  border-radius: 4px 0 0 4px;
+}
+
+.in-active-step {
+  background-color: get-color(black-coral-3);
+  border-radius: 4px 0 0 4px;
+}
+
+.step-name {
+  color: white;
+}

@@ -1,0 +1,15 @@
+export const ROUTES = {
+  OVERVIEW_ROUTE: '/overview',
+  FLOW_ROUTE: '/flow/:id',
+  NEWSERVICE_ROUTE: '/newService',
+  NEWSERVICE_ROUTE_WITH_INTENT_NAME: '/newService/:intentName',
+  EDITSERVICE_ROUTE: '/edit/:id',
+  AUTOSERVICES_ROUTE: '/auto-services',
+  FAULTY_SERVICES_ROUTE: '/faultyServices',
+  SERVICE_SETTINGS: '/services/settings',
+  API_REGISTRY_ROUTE: '/api-registry',
+
+  replaceWithId(route: string, id: string | number = '') {
+    return route.replace(':id', id.toString());
+  },
+};

@@ -1,0 +1,2136 @@
+{
+  "schema_version": "1.0",
+  "repo": "/private/tmp/risttee-service-module-bug2.T7jJ8X/Service-Module",
+  "generated_from_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+  "generated_at": "2026-07-08T10:15:46.251180Z",
+  "stack": {
+    "language": "Node",
+    "framework": null,
+    "build_system": "npm",
+    "has_docker": true
+  },
+  "startup": {
+    "method": "docker-compose",
+    "compose_file": "docker-compose.yml",
+    "ports": [
+      8086
+    ],
+    "health_endpoint": null,
+    "assumptions": [
+      "docker and docker-compose must be available"
+    ]
+  },
+  "surface": [
+    {
+      "id": "fd0e71691b8cecfb5904ec70a9f4e1bd4a7b0358e3fca9df0693eba5c58a39b1",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/account/user-profile-settings",
+      "source_file": "DSL/Ruuter/services/GET/account/user-profile-settings.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 3,
+        "env_placeholders": [],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "83e4d1ca0a28fc992cec314fe558004fa4dac3bb63c8158f46a7c78297b67c84",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/accounts/widget-data",
+      "source_file": "DSL/Ruuter/services/GET/accounts/widget-data.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "params.user_id"
+        ],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 7,
+        "env_placeholders": [
+          "SERVICE_DMAPPER",
+          "SERVICE_USERS_RESQL"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "f2f2fe3cd31cd5c19b439687bf952c52392a163800b3e657369f35bd6f0f55ad",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/active-services",
+      "source_file": "DSL/Ruuter/services/GET/active-services.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [
+          200
+        ],
+        "has_guard": true,
+        "step_count": 3,
+        "env_placeholders": [
+          "SERVICE_RESQL"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "dd685929540ee8289206e5aa7ae282f098e15ad1a80be76882cf7e1ab171c55e",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/generic/accounts/customer-support-activity",
+      "source_file": "DSL/Ruuter/services/GET/generic/accounts/customer-support-activity.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 3,
+        "env_placeholders": [],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "bd93bfcb46fedba7fe0d686e45e8f06b43ab2f4222fcd5dd7fd4f246c3a8f52f",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/generic/accounts/user-profile-settings",
+      "source_file": "DSL/Ruuter/services/GET/generic/accounts/user-profile-settings.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 3,
+        "env_placeholders": [],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "01a527357b035dbf264f78d9ba0f0bea105e6ae54ea10a57ba952dc85692dc5d",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/generic/accounts/user-role",
+      "source_file": "DSL/Ruuter/services/GET/generic/accounts/user-role.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 3,
+        "env_placeholders": [],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "c744986e40cf017ac63b826e7ad566885939ad47feef3c721d406f2777edc248",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/generic/csa/active-chats",
+      "source_file": "DSL/Ruuter/services/GET/generic/csa/active-chats.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 3,
+        "env_placeholders": [],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "926ad10935c3fc0db6f4ed1ef261e4f8b86c4d28ebbb55600efec9c6bb3f8888",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/generic/userinfo",
+      "source_file": "DSL/Ruuter/services/GET/generic/userinfo.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": true,
+        "step_count": 3,
+        "env_placeholders": [],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "12934b8f6d8e0b22ec37629f7336aa6483f92bf0384b23d2d9bb348ae89add16",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/get-sticky",
+      "source_file": "DSL/Ruuter/services/GET/get-sticky.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "params.name"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200
+        ],
+        "has_guard": true,
+        "step_count": 5,
+        "env_placeholders": [
+          "SERVICE_DMAPPER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${incoming.params == null || incoming.params.name == null}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "93950becc8f112da4d70c5981dc178c80b73e7bed821f74aaccf4d46a5638b66",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/internal/domain-file",
+      "source_file": "DSL/Ruuter/services/GET/internal/domain-file.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "headers.cookie"
+        ],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 5,
+        "env_placeholders": [
+          "SERVICE_DMAPPER",
+          "SERVICE_RUUTER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "ce1360bf409c4055ba7f636127f4b8a3f25dfaf0f3a45332eb22673a4e1b817b",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/internal/return-file-locations",
+      "source_file": "DSL/Ruuter/services/GET/internal/return-file-locations.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 3,
+        "env_placeholders": [
+          "DMAPPER_LOCATIONS_PATH"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "dd680e5ae869cf14b557b7faa47bf7afd2fb8fcbe2621541125803619907b064",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/mocks/client-input-variables",
+      "source_file": "DSL/Ruuter/services/GET/mocks/client-input-variables.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 3,
+        "env_placeholders": [],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "dd95e54362e376fbbe8b8fa2177f36883c0f7658a2681ad8c55b97dbe5567135",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/mocks/service-settings",
+      "source_file": "DSL/Ruuter/services/GET/mocks/service-settings.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 3,
+        "env_placeholders": [],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "e2d1389512c51409da8a9d45a698596d70fccb535e1ad4fcdba69b25a885c939",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/mocks/validation-mock",
+      "source_file": "DSL/Ruuter/services/GET/mocks/validation-mock.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 4,
+        "env_placeholders": [
+          "SERVICE_PROJECT_LAYER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "b065c7fed0e32e0ab0d4e5a9513cb4f13a9ea9d83d6a334001bb79e844d2166d",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/rasa/rule-names",
+      "source_file": "DSL/Ruuter/services/GET/rasa/rule-names.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 4,
+        "env_placeholders": [
+          "SERVICE_DMAPPER_HBS",
+          "SERVICE_OPENSEARCH"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "e5b70e1ba7e10b763dc8a2837143923c806dbfa154ca24cff0c1bcc9f351bb24",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/secrets-with-priority",
+      "source_file": "DSL/Ruuter/services/GET/secrets-with-priority.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "params.type"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200
+        ],
+        "has_guard": true,
+        "step_count": 5,
+        "env_placeholders": [
+          "SERVICE_DMAPPER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${incoming.params !== null && incoming.params.type === 'test'}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "38b54ef1e9f241788050c38ce13b311c3eca7fd749667cf6cf0784293f93e703",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/secrets",
+      "source_file": "DSL/Ruuter/services/GET/secrets.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [
+          200
+        ],
+        "has_guard": true,
+        "step_count": 3,
+        "env_placeholders": [
+          "SERVICE_DMAPPER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "7a81efb1db0b64fbeb00228f79c386459b1016e01a2b93159f4141e9c410b83a",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/service-settings",
+      "source_file": "DSL/Ruuter/services/GET/service-settings.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [
+          200
+        ],
+        "has_guard": true,
+        "step_count": 3,
+        "env_placeholders": [
+          "SERVICE_RESQL"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "a8731af11bb3f74f7b16ace85582aabcb9e0a8b157ddc90b62c7a35ccefd1f6a",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/services/log-by-request",
+      "source_file": "DSL/Ruuter/services/GET/services/log-by-request.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          404
+        ],
+        "has_guard": false,
+        "step_count": 5,
+        "env_placeholders": [
+          "SERVICE_OPENSEARCH"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${results.response.body.found === true}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "2c6b02d36b4fe65ffbd350751195befc2f3cd337bbfd997f3999aadd67a8434c",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/services/log-by-service",
+      "source_file": "DSL/Ruuter/services/GET/services/log-by-service.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          404
+        ],
+        "has_guard": false,
+        "step_count": 5,
+        "env_placeholders": [
+          "SERVICE_OPENSEARCH"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${results.response.body.found === true}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "30c5dda7984047268d18d2614128a66b0dd7523af9efb2d36158f466c0c74323",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/services/services-detailed/nok",
+      "source_file": "DSL/Ruuter/services/GET/services/services-detailed/nok.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "params.order",
+          "params.page",
+          "params.page_size"
+        ],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 4,
+        "env_placeholders": [
+          "SERVICE_DMAPPER_HBS",
+          "SERVICE_OPENSEARCH"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "f070cc01d1767eb26852714bd24652a4dba8936daae152923c338087e0b58d5e",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/services/statistics",
+      "source_file": "DSL/Ruuter/services/GET/services/statistics.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [
+          200
+        ],
+        "has_guard": false,
+        "step_count": 3,
+        "env_placeholders": [
+          "SERVICE_OPENSEARCH"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "2166802e6c638e5746f86ece1e6b2894f1849ddd774e2d03e4194e484c25552f",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/services/status",
+      "source_file": "DSL/Ruuter/services/GET/services/status.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "params.id"
+        ],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 3,
+        "env_placeholders": [
+          "SERVICE_RESQL"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "60ba8b992018ab763b457118ca9c2d2b4f7167d4235993db4131c760e30745e1",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/slots",
+      "source_file": "DSL/Ruuter/services/GET/slots.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": true,
+        "step_count": 3,
+        "env_placeholders": [
+          "SERVICE_OPENSEARCH"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "2891bb08d421fe262dee828e9e8e5bcb96f441bdcae38ef8cf85ac32c279c44e",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/steps/preferences",
+      "source_file": "DSL/Ruuter/services/GET/steps/preferences.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "headers.cookie"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          401
+        ],
+        "has_guard": false,
+        "step_count": 11,
+        "env_placeholders": [
+          "SERVICE_RESQL",
+          "SERVICE_TIM"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "399f7750126213f9f10e79d494879aa1c4197801b1f2bb8a59cda4b5014614a4",
+      "type": "dsl-flow",
+      "method": "GET",
+      "path": "/sticky/example",
+      "source_file": "DSL/Ruuter/services/GET/sticky/example.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "headers.cookie"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          401
+        ],
+        "has_guard": false,
+        "step_count": 8,
+        "env_placeholders": [
+          "SERVICE_RUUTER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${incoming.headers.cookie == null || incoming.headers.cookie == \"\"}",
+            "status": 401
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "e3f6161afa2bbe7216d77905f6e92b67b0bee534b7535d6e7ee5e60ae564604b",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/auth/login",
+      "source_file": "DSL/Ruuter/services/POST/auth/login.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.login",
+          "body.password"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          400
+        ],
+        "has_guard": true,
+        "step_count": 13,
+        "env_placeholders": [
+          "DOMAIN",
+          "SERVICE_TIM",
+          "SERVICE_USERS_RESQL"
+        ],
+        "missing_field_branches": [
+          {
+            "fields": [
+              {
+                "location": "body",
+                "field": "login"
+              },
+              {
+                "location": "body",
+                "field": "password"
+              }
+            ],
+            "status": 400
+          }
+        ],
+        "conditional_branches": [
+          {
+            "condition_expr": "${results.response.body.length != 0}",
+            "status": 400
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "c9ab2a66b2a154ac0da9ef18869d6fa0c96cf829f333dc409fca28e15365ca8e",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/csv",
+      "source_file": "DSL/Ruuter/services/POST/csv.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.data",
+          "body.del",
+          "body.qul"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          400
+        ],
+        "has_guard": true,
+        "step_count": 5,
+        "env_placeholders": [
+          "SERVICE_DMAPPER_HBS"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${incoming.body == null}",
+            "status": 400
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "1469ac90e27f737b434eef3a50a57c53e06e9596c40fad1caa8d6f7e054f6be8",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/dates/calculate-difference",
+      "source_file": "DSL/Ruuter/services/POST/dates/calculate-difference.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.endDate",
+          "body.startDate",
+          "params.outputType"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400
+        ],
+        "has_guard": false,
+        "step_count": 11,
+        "env_placeholders": [
+          "SERVICE_DMAPPER_HBS"
+        ],
+        "missing_field_branches": [
+          {
+            "fields": [
+              {
+                "location": "body",
+                "field": "startDate"
+              }
+            ],
+            "status": 400
+          }
+        ],
+        "conditional_branches": [
+          {
+            "condition_expr": "${incoming.body == null}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${new Date(endDate) < new Date(startDate)}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${outputType !== null && !['years','months','hours','days','minutes', 'seconds'].includes(outputType)}",
+            "status": 400
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "a2b48e4e6d64069d5c05c2ef6963680655ca94c5d45ba90185efed2c5b377d3f",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/endpoints/all",
+      "source_file": "DSL/Ruuter/services/POST/endpoints/all.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.page",
+          "body.page_size",
+          "body.pagination",
+          "body.search",
+          "body.sorting"
+        ],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 3,
+        "env_placeholders": [
+          "SERVICE_RESQL"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "2c306c4cce015dbc6b6e07d3bf42bab9268739ade7aa85e0e4cfcb6c4f9456c8",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/endpoints/index-llm",
+      "source_file": "DSL/Ruuter/services/POST/endpoints/index-llm.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.endpointId"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400,
+          404,
+          500
+        ],
+        "has_guard": false,
+        "step_count": 18,
+        "env_placeholders": [
+          "LLM_RUUTER_PUBLIC",
+          "SERVICE_RESQL"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${endpointId == null || endpointId === ''}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${endpoint_result.response.body == null || endpoint_result.response.body.length === 0}",
+            "status": 404
+          },
+          {
+            "condition_expr": "${llm_result != null && llm_result.response != null && 200 <= llm_result.response.statusCodeValue && llm_result.response.statusCodeValue < 300 && llm_result.response.body.response.success === true}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "b69041ba4d1ad3bb3de9b474bbf98473178f86ed25bf524fe67234c736492b0d",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/endpoints/reindex-endpoint",
+      "source_file": "DSL/Ruuter/services/POST/endpoints/reindex-endpoint.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.endpointId",
+          "headers.cookie"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400,
+          500
+        ],
+        "has_guard": false,
+        "step_count": 10,
+        "env_placeholders": [
+          "SERVICE_RESQL",
+          "SERVICE_RUUTER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${endpointId == null || endpointId === ''}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${index_llm_result != null && index_llm_result.response != null && 200 <= index_llm_result.response.statusCodeValue && index_llm_result.response.statusCodeValue < 300}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "4eea2291a20f136f5f7f524fc81785cbc79dfc0da5abcf495591ed84f0037f3b",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/file/rename",
+      "source_file": "DSL/Ruuter/services/POST/file/rename.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.current_path",
+          "body.new_path"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400
+        ],
+        "has_guard": false,
+        "step_count": 5,
+        "env_placeholders": [
+          "SERVICE_DMAPPER_HBS"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${incoming.body == null || incoming.body.current_path == null || incoming.body.new_path == null}",
+            "status": 400
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "49cb72e9d280104ed52d3d1a49de23af8ebd84b116fd7972a3a19062525da6a1",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/mocks/RBAC-mock",
+      "source_file": "DSL/Ruuter/services/POST/mocks/RBAC-mock.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.allowedRoles",
+          "body.userId"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400
+        ],
+        "has_guard": false,
+        "step_count": 7,
+        "env_placeholders": [],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${incoming.body == null}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${userId === null || allowedRoles === null}",
+            "status": 400
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "6cc1ffc0f86aa43a0d58b392ae08198b37ef9fcf47323616a11dc65d34ae7b2f",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/mocks/dates/calculate-difference",
+      "source_file": "DSL/Ruuter/services/POST/mocks/dates/calculate-difference.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.endDate",
+          "body.startDate",
+          "params.outputType"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400
+        ],
+        "has_guard": false,
+        "step_count": 17,
+        "env_placeholders": [],
+        "missing_field_branches": [
+          {
+            "fields": [
+              {
+                "location": "body",
+                "field": "startDate"
+              }
+            ],
+            "status": 400
+          }
+        ],
+        "conditional_branches": [
+          {
+            "condition_expr": "${incoming.body == null}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${new Date(endDate) < new Date(startDate)}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${outputType !== null && !['years','months','hours','days','minutes', 'seconds'].includes(outputType)}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${outputType === 'years'}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${outputType === 'months'}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${outputType === 'hours'}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${outputType === 'minutes'}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${outputType === 'seconds'}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "0db79b5cb933dc295b7dab631455834857a8ded8c1b0d12571695a56ff0b77ca",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/mocks/service-settings",
+      "source_file": "DSL/Ruuter/services/POST/mocks/service-settings.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 3,
+        "env_placeholders": [],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "c572ecb576959586e5bf9674904794e0f7b24585dbdcc8b202be53b209998db5",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/mocks/services/add",
+      "source_file": "DSL/Ruuter/services/POST/mocks/services/add.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.description",
+          "body.name"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          201,
+          400
+        ],
+        "has_guard": false,
+        "step_count": 6,
+        "env_placeholders": [],
+        "missing_field_branches": [
+          {
+            "fields": [
+              {
+                "location": "body",
+                "field": "name"
+              },
+              {
+                "location": "body",
+                "field": "description"
+              }
+            ],
+            "status": 400
+          }
+        ],
+        "conditional_branches": [
+          {
+            "condition_expr": "${incoming.body == null}",
+            "status": 400
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "1f530a6e286efdcd5bad232169bce5761b0beb3da7697bb97a711d7185023009",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/mocks/services/open-api-spec-mock",
+      "source_file": "DSL/Ruuter/services/POST/mocks/services/open-api-spec-mock.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [
+          "petstore3.swagger.io"
+        ],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 3,
+        "env_placeholders": [],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "f110ee9d5df817e84aefbcd3f3c2a09eed816432b6537af9ad4de0a0ae30f576",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/mocks/user-info",
+      "source_file": "DSL/Ruuter/services/POST/mocks/user-info.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.isTokenExpired"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          401
+        ],
+        "has_guard": false,
+        "step_count": 6,
+        "env_placeholders": [],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${incoming.body.isTokenExpired === true}",
+            "status": 401
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "2569f1231c3822d3a685c4493165949eb8a1c354faf45121a7c0db9fe64df24e",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/mocks/validation-mock",
+      "source_file": "DSL/Ruuter/services/POST/mocks/validation-mock.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 4,
+        "env_placeholders": [
+          "SERVICE_PROJECT_LAYER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "8d3a74b33c5f1106d242ad142ef978d091e8eb02b38ea9018c6dff826f552682",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/rasa/rules/add",
+      "source_file": "DSL/Ruuter/services/POST/rasa/rules/add.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.data",
+          "headers.cookie"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          406,
+          409
+        ],
+        "has_guard": false,
+        "step_count": 16,
+        "env_placeholders": [
+          "SERVICES_PIPELINE",
+          "SERVICE_DMAPPER",
+          "SERVICE_RUUTER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "1f7d60de7c95c78d50c0f4c6dd3ed7b5299aa282b34a056dbb4c3258fc1a0692",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/saveJsonToYml",
+      "source_file": "DSL/Ruuter/services/POST/saveJsonToYml.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.result",
+          "params.location"
+        ],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": true,
+        "step_count": 4,
+        "env_placeholders": [
+          "SERVICE_DMAPPER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "a703b2e48a30627fb4fd7d1bd21e61df9aeaf10d8141382f8133ead353f4c35c",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/service-by-id",
+      "source_file": "DSL/Ruuter/services/POST/service-by-id.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.id",
+          "body.search",
+          "headers.cookie"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          401
+        ],
+        "has_guard": true,
+        "step_count": 10,
+        "env_placeholders": [
+          "SERVICE_RESQL",
+          "SERVICE_TIM"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "9b7a6f34d277aaf089f2d860d0b3a99b21dbfb59581a1c48e9a89df489aded04",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/service-settings",
+      "source_file": "DSL/Ruuter/services/POST/service-settings.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.name",
+          "body.value"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200
+        ],
+        "has_guard": true,
+        "step_count": 3,
+        "env_placeholders": [
+          "SERVICE_RESQL"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "c5037f6bb7a1a1d8fc95b1ba510c0ad41beb8f1a6c747b10797f5139f2ade619",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services",
+      "source_file": "DSL/Ruuter/services/POST/services.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.is_common",
+          "body.page",
+          "body.page_size",
+          "body.sorting"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200
+        ],
+        "has_guard": true,
+        "step_count": 4,
+        "env_placeholders": [
+          "SERVICE_RESQL"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "c0a0f87ddcae300dc02c61f7831152e5c749f0fddb3d104bb14f19a598fdc155",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/add",
+      "source_file": "DSL/Ruuter/services/POST/services/add.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.content",
+          "body.description",
+          "body.entities",
+          "body.examples",
+          "body.isCommon",
+          "body.name",
+          "body.serviceId",
+          "body.state",
+          "body.structure",
+          "body.type",
+          "body.updateServiceDb"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400,
+          409
+        ],
+        "has_guard": false,
+        "step_count": 17,
+        "env_placeholders": [
+          "RUUTER_SERVICES_GET_PATH",
+          "RUUTER_SERVICES_PATH",
+          "RUUTER_SERVICES_POST_PATH",
+          "SERVICE_DMAPPER",
+          "SERVICE_RESQL"
+        ],
+        "missing_field_branches": [
+          {
+            "fields": [
+              {
+                "location": "body",
+                "field": "name"
+              },
+              {
+                "location": "body",
+                "field": "description"
+              },
+              {
+                "location": "body",
+                "field": "type"
+              },
+              {
+                "location": "body",
+                "field": "content"
+              },
+              {
+                "location": "body",
+                "field": "serviceId"
+              },
+              {
+                "location": "body",
+                "field": "isCommon"
+              },
+              {
+                "location": "body",
+                "field": "structure"
+              }
+            ],
+            "status": 400
+          }
+        ],
+        "conditional_branches": [
+          {
+            "condition_expr": "${name_exists_res.response.body[0].nameExists}",
+            "status": 409
+          },
+          {
+            "condition_expr": "${type === 'GET'}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${200 <= results.response.statusCodeValue && results.response.statusCodeValue < 300}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "02021bd68eb525f24d6da08f0cd3ead51763797e4b587f9c5730f6281e9cb5ce",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/check-import-names",
+      "source_file": "DSL/Ruuter/services/POST/services/check-import-names.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.names",
+          "body.timezone"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200
+        ],
+        "has_guard": false,
+        "step_count": 4,
+        "env_placeholders": [
+          "SERVICE_RESQL"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "f3111afc42b2beaacbf5332d08d91d248d3b085328cecb5485e4fb8f640d42a6",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/create-endpoint",
+      "source_file": "DSL/Ruuter/services/POST/services/create-endpoint.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.definitions",
+          "body.description",
+          "body.endpointId",
+          "body.name",
+          "body.serviceId",
+          "body.type",
+          "headers.cookie"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200
+        ],
+        "has_guard": false,
+        "step_count": 7,
+        "env_placeholders": [
+          "SERVICE_RESQL",
+          "SERVICE_RUUTER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${index_llm_result != null && index_llm_result.response != null && 200 <= index_llm_result.response.statusCodeValue && index_llm_result.response.statusCodeValue < 300}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "6a9e5b879422f89f65acce9de6129207b55a12a14dcedaca7cf6a5587fe617a1",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/delete-endpoint",
+      "source_file": "DSL/Ruuter/services/POST/services/delete-endpoint.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.id"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200
+        ],
+        "has_guard": false,
+        "step_count": 4,
+        "env_placeholders": [
+          "SERVICE_RESQL"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "cf2c0d12c31bac63b3ee134d6f2e96f09c982399dd139c7b06d28c58b3dcf0a8",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/delete",
+      "source_file": "DSL/Ruuter/services/POST/services/delete.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.id",
+          "body.type"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400
+        ],
+        "has_guard": false,
+        "step_count": 20,
+        "env_placeholders": [
+          "RUUTER_SERVICES_DIR_PATH",
+          "RUUTER_SERVICES_PATH",
+          "SERVICE_DMAPPER",
+          "SERVICE_RESQL"
+        ],
+        "missing_field_branches": [
+          {
+            "fields": [
+              {
+                "location": "body",
+                "field": "id"
+              },
+              {
+                "location": "body",
+                "field": "type"
+              }
+            ],
+            "status": 400
+          }
+        ],
+        "conditional_branches": [
+          {
+            "condition_expr": "${status_res.response.body[0].currentState === 'active'}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${!!service_file_exists.response.body}",
+            "status": 400
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "09d961e31603f8d8184b417187860ee43d6ebaaa428f88b35b3c566a51af9d8d",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/domain-intent-service-link",
+      "source_file": "DSL/Ruuter/services/POST/services/domain-intent-service-link.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.intent",
+          "body.serviceMethod",
+          "body.serviceName",
+          "body.serviceSlot",
+          "body.type",
+          "headers.cookie"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400
+        ],
+        "has_guard": false,
+        "step_count": 15,
+        "env_placeholders": [
+          "SERVICES_PIPELINE",
+          "SERVICE_DMAPPER",
+          "SERVICE_RUUTER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${domain_data_json.intents.includes(intent)}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${type === \"Add\"}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "cf12c5c62c9afc1f4ab0bffc9b4ce661fa466a3f163d9b74381317d643baa1ec",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/edit",
+      "source_file": "DSL/Ruuter/services/POST/services/edit.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.content",
+          "body.description",
+          "body.entities",
+          "body.examples",
+          "body.isCommon",
+          "body.name",
+          "body.state",
+          "body.structure",
+          "body.type",
+          "body.updateServiceDb",
+          "headers.cookie",
+          "params.id"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400,
+          409
+        ],
+        "has_guard": false,
+        "step_count": 47,
+        "env_placeholders": [
+          "AZURE_SEARCH_API_KEY",
+          "AZURE_SEARCH_INDEXER_NAME",
+          "AZURE_SEARCH_SERVICE_NAME",
+          "RUUTER_SERVICES_DIR_PATH",
+          "RUUTER_SERVICES_GET_PATH",
+          "RUUTER_SERVICES_PATH",
+          "RUUTER_SERVICES_POST_PATH",
+          "SERVICE_DMAPPER",
+          "SERVICE_DMAPPER_HBS",
+          "SERVICE_RESQL",
+          "SERVICE_RUUTER",
+          "STORAGE_FERRY",
+          "STORAGE_FERRY_ACCOUNT_ID",
+          "STORAGE_FERRY_CONTAINER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${name_exists_res.response.body[0].nameExists}",
+            "status": 409
+          },
+          {
+            "condition_expr": "${id === null || name === null || description === null}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${type === null}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${type !== 'GET' && type !== 'POST'}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${state === 'draft'}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${state === 'active'}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${old_state === 'active'}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${old_state === 'active'}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${\"[#AZURE_SEARCH_SERVICE_NAME]\" !== \"\" && \"[#AZURE_SEARCH_INDEXER_NAME]\" !== \"\" && \"[#AZURE_SEARCH_API_KEY]\" !== \"\"}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${state === 'draft'}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${old_service_result !== undefined && old_service_result !== null}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${\"[#AZURE_SEARCH_SERVICE_NAME]\" !== \"\" && \"[#AZURE_SEARCH_INDEXER_NAME]\" !== \"\" && \"[#AZURE_SEARCH_API_KEY]\" !== \"\"}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "ddff8a63a50fb44d0579df163520ba71e2e0ef974b92a131f46c4bf76944d746",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/endpoint-url-validation",
+      "source_file": "DSL/Ruuter/services/POST/services/endpoint-url-validation.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.type",
+          "body.url"
+        ],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 4,
+        "env_placeholders": [
+          "SERVICE_PROJECT_LAYER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "dac663ffc6f163d254bb20b532aa8f27a1af242a41c4ded7e180ea98eefd3d1d",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/import-services",
+      "source_file": "DSL/Ruuter/services/POST/services/import-services.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.services",
+          "body.timezone"
+        ],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": false,
+        "step_count": 9,
+        "env_placeholders": [
+          "RUUTER_SERVICES_POST_PATH",
+          "SERVICE_DMAPPER",
+          "SERVICE_RESQL"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "c3fcbdbadecb750c8f6c1d0ce77456e3fb4b335aeeec360f273689f2825a3f96",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/open-api-spec",
+      "source_file": "DSL/Ruuter/services/POST/services/open-api-spec.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.url"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          400
+        ],
+        "has_guard": false,
+        "step_count": 5,
+        "env_placeholders": [],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${incoming.body == null || incoming.body.url == null}",
+            "status": 400
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "9a01f77913e6c5e06164040fb505c3f3b2ad078254538ac7290f0f5240600333",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/requests/explain",
+      "source_file": "DSL/Ruuter/services/POST/services/requests/explain.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.requests"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          400
+        ],
+        "has_guard": false,
+        "step_count": 18,
+        "env_placeholders": [],
+        "missing_field_branches": [
+          {
+            "fields": [
+              {
+                "location": "body",
+                "field": "requests"
+              }
+            ],
+            "status": 400
+          }
+        ],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "0597d0e2fa2bd721eaa0dbb41867825019cf1be4478cd5d3855ce9b3eb45cfbc",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/resql/add",
+      "source_file": "DSL/Ruuter/services/POST/services/resql/add.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.name",
+          "body.sql"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400
+        ],
+        "has_guard": false,
+        "step_count": 9,
+        "env_placeholders": [
+          "SERVICE_DMAPPER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${incoming.body == null}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${name == null || sql == null}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${200 <= results.response.statusCodeValue && results.response.statusCodeValue < 300}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "00a42a15e8d4ece42f3d0d669fa15814c3bb1cc2368ab485329d4779a0b989af",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/status",
+      "source_file": "DSL/Ruuter/services/POST/services/status.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.id",
+          "body.state",
+          "body.type"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400,
+          500
+        ],
+        "has_guard": false,
+        "step_count": 35,
+        "env_placeholders": [
+          "AZURE_SEARCH_API_KEY",
+          "AZURE_SEARCH_INDEXER_NAME",
+          "AZURE_SEARCH_SERVICE_NAME",
+          "RUUTER_SERVICES_DIR_PATH",
+          "RUUTER_SERVICES_PATH",
+          "SERVICE_DMAPPER",
+          "SERVICE_DMAPPER_HBS",
+          "SERVICE_RESQL",
+          "STORAGE_FERRY",
+          "STORAGE_FERRY_ACCOUNT_ID",
+          "STORAGE_FERRY_CONTAINER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${id === null || new_state === null || ruuter_type === null}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${new_state === \"ready\"}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${new_state === \"draft\"}",
+            "status": 500
+          },
+          {
+            "condition_expr": "${status_res.response.body[0].currentState === new_state}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${!!service_file_exists_result.response.body}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${new_state === \"active\"}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${new_state === \"draft\"}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${\"[#AZURE_SEARCH_SERVICE_NAME]\" !== \"\" && \"[#AZURE_SEARCH_INDEXER_NAME]\" !== \"\" && \"[#AZURE_SEARCH_API_KEY]\" !== \"\"}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${\"[#AZURE_SEARCH_SERVICE_NAME]\" !== \"\" && \"[#AZURE_SEARCH_INDEXER_NAME]\" !== \"\" && \"[#AZURE_SEARCH_API_KEY]\" !== \"\"}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "8eb2fcfe929a4c301b25c22b53df24e7707a6ccda6aec4e508424971f7b61dd8",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/test-endpoint",
+      "source_file": "DSL/Ruuter/services/POST/services/test-endpoint.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.endpointId",
+          "body.request"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400
+        ],
+        "has_guard": false,
+        "step_count": 14,
+        "env_placeholders": [
+          "SERVICE_RESQL"
+        ],
+        "missing_field_branches": [
+          {
+            "fields": [
+              {
+                "location": "body",
+                "field": "endpointId"
+              },
+              {
+                "location": "body",
+                "field": "request"
+              }
+            ],
+            "status": 400
+          }
+        ],
+        "conditional_branches": [
+          {
+            "condition_expr": "${current_request.method.toLowerCase() == 'post'}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${current_request.method.toLowerCase() == 'put'}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${current_request.method.toLowerCase() == 'delete'}",
+            "status": 200
+          },
+          {
+            "condition_expr": "${isSuccess && !is204 && responseBody != null}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "201db77d3eb50255501e1a44e95b61030285c507230d5122ed7e11496d98d1cb",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/services/update-endpoint",
+      "source_file": "DSL/Ruuter/services/POST/services/update-endpoint.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.definitions",
+          "body.description",
+          "body.name",
+          "body.serviceId",
+          "body.type",
+          "headers.cookie",
+          "params.id"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          200,
+          400
+        ],
+        "has_guard": false,
+        "step_count": 10,
+        "env_placeholders": [
+          "SERVICE_RESQL",
+          "SERVICE_RUUTER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": [
+          {
+            "condition_expr": "${id == null}",
+            "status": 400
+          },
+          {
+            "condition_expr": "${index_llm_result != null && index_llm_result.response != null && 200 <= index_llm_result.response.statusCodeValue && index_llm_result.response.statusCodeValue < 300}",
+            "status": 200
+          }
+        ]
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "01699d69d04fcc27a615ccdb88aeef8ec8263043a60c1e2cc5d9f268894af375",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/steps/preferences",
+      "source_file": "DSL/Ruuter/services/POST/steps/preferences.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [
+          "body.steps",
+          "headers.cookie"
+        ],
+        "upstream_services": [],
+        "return_statuses": [
+          401
+        ],
+        "has_guard": false,
+        "step_count": 9,
+        "env_placeholders": [
+          "SERVICE_RESQL",
+          "SERVICE_TIM"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    },
+    {
+      "id": "d70ecbf415aeb00e69bf31dc0a74ea4e2442a6cd25d95ac346cc1d908e6927c8",
+      "type": "dsl-flow",
+      "method": "POST",
+      "path": "/user-info",
+      "source_file": "DSL/Ruuter/services/POST/user-info.yml",
+      "discovered_by": "buerokratt_dsl",
+      "first_seen_sha": "847b7d69f11d437ef949cdbb32fce77f5a25572c",
+      "context": {
+        "request_inputs": [],
+        "upstream_services": [],
+        "return_statuses": [],
+        "has_guard": true,
+        "step_count": 3,
+        "env_placeholders": [
+          "SERVICE_PROJECT_LAYER"
+        ],
+        "missing_field_branches": [],
+        "conditional_branches": []
+      },
+      "context_unavailable_reason": null
+    }
+  ],
+  "smoke_candidates": [
+    {
+      "endpoint_id": "fd0e71691b8cecfb5904ec70a9f4e1bd4a7b0358e3fca9df0693eba5c58a39b1",
+      "method": "GET",
+      "path": "/account/user-profile-settings",
+      "reason": "simplest GET with no inputs"
+    },
+    {
+      "endpoint_id": "dd685929540ee8289206e5aa7ae282f098e15ad1a80be76882cf7e1ab171c55e",
+      "method": "GET",
+      "path": "/generic/accounts/customer-support-activity",
+      "reason": "simplest GET with no inputs"
+    },
+    {
+      "endpoint_id": "bd93bfcb46fedba7fe0d686e45e8f06b43ab2f4222fcd5dd7fd4f246c3a8f52f",
+      "method": "GET",
+      "path": "/generic/accounts/user-profile-settings",
+      "reason": "simplest GET with no inputs"
+    },
+    {
+      "endpoint_id": "01a527357b035dbf264f78d9ba0f0bea105e6ae54ea10a57ba952dc85692dc5d",
+      "method": "GET",
+      "path": "/generic/accounts/user-role",
+      "reason": "simplest GET with no inputs"
+    },
+    {
+      "endpoint_id": "c744986e40cf017ac63b826e7ad566885939ad47feef3c721d406f2777edc248",
+      "method": "GET",
+      "path": "/generic/csa/active-chats",
+      "reason": "simplest GET with no inputs"
+    },
+    {
+      "endpoint_id": "926ad10935c3fc0db6f4ed1ef261e4f8b86c4d28ebbb55600efec9c6bb3f8888",
+      "method": "GET",
+      "path": "/generic/userinfo",
+      "reason": "simple GET, guarded but no inputs"
+    },
+    {
+      "endpoint_id": "12934b8f6d8e0b22ec37629f7336aa6483f92bf0384b23d2d9bb348ae89add16",
+      "method": "GET",
+      "path": "/get-sticky",
+      "reason": "simple GET with one input, guarded"
+    },
+    {
+      "endpoint_id": "38b54ef1e9f241788050c38ce13b311c3eca7fd749667cf6cf0784293f93e703",
+      "method": "GET",
+      "path": "/secrets",
+      "reason": "simple GET, guarded, no inputs"
+    },
+    {
+      "endpoint_id": "e3f6161afa2bbe7216d77905f6e92b67b0bee534b7535d6e7ee5e60ae564604b",
+      "method": "POST",
+      "path": "/auth/login",
+      "reason": "auth endpoint, simple POST with guard"
+    },
+    {
+      "endpoint_id": "c5037f6bb7a1a1d8fc95b1ba510c0ad41beb8f1a6c747b10797f5139f2ade619",
+      "method": "POST",
+      "path": "/services",
+      "reason": "simple POST with guard, multiple inputs but high-value"
+    }
+  ]
+}

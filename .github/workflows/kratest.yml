@@ -1,0 +1,95 @@
+name: Kratest — generate tests for PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  kratest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repo
+        uses: actions/checkout@v4
+
+      # Requires repository variable KRATEST_REPO: Settings → Secrets and variables → Actions → Variables
+      - name: Checkout kratest
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.KRATEST_REPO }}
+          ref: 1ad045dee087550b495e852f1185f05100e26fc4
+          path: kratest-agent
+          token: ${{ secrets.KRATEST_TOKEN }}
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install -e kratest-agent/
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Node dependencies
+        run: npm install
+        working-directory: kratest-agent
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium
+        working-directory: kratest-agent
+
+      - name: Use source repo agent config
+        run: |
+          if [ -f agent.config.yml ]; then
+            cp agent.config.yml kratest-agent/kratest/agent.config.yml
+            echo "Using source repo agent.config.yml"
+          else
+            echo "No agent.config.yml found in source repo, using kratest default"
+          fi
+
+      - name: Start dynamic mock server
+        run: |
+          node -e "
+          const http = require('http');
+          http.createServer((req, res) => {
+            console.log('[Mock] Received request:', req.method, req.url);
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({ response: { status: 'ok', mock: true, path: req.url } }));
+          }).listen(8080);
+          console.log('Mock server running on port 8080');
+          " &
+          sleep 2
+
+      - name: Debug Mock endpoints
+        run: |
+          echo "=== curl /health-check ==="
+          curl -v http://localhost:8080/health-check 2>&1 || true
+          echo "=== curl /test/health-check ==="
+          curl -v http://localhost:8080/test/health-check 2>&1 || true
+          echo "=== curl /test/test-endpoint ==="
+          curl -v http://localhost:8080/test/test-endpoint 2>&1 || true
+          echo "=== curl /order/jump-with-end ==="
+          curl -v http://localhost:8080/order/jump-with-end 2>&1 || true
+
+      - name: Run kratest
+        run: python -m kratest.main
+        env:
+          PYTHONPATH: ${{ github.workspace }}/kratest-agent
+          KRATEST_TOKEN: ${{ secrets.KRATEST_TOKEN }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          KRATEST_MODE: pr
+          PR_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          BASE_URL: http://localhost:8080
+
+      - name: Upload kratest log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kratest-log
+          path: kratest.log
+          if-no-files-found: ignore

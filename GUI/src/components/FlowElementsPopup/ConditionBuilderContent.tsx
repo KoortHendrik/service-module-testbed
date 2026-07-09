@@ -1,0 +1,45 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import useServiceStore from 'store/new-services.store';
+
+import { Track } from '..';
+import { SwitchBox } from '../FormElements';
+import RuleBuilder from './RuleBuilder';
+import { Group } from './RuleBuilder/types';
+import YesNoPopupContent from './YesNoPopupContent';
+
+import './styles.scss';
+
+const ConditionBuilderContent: React.FC = () => {
+  const { t } = useTranslation();
+  const isYesNoQuestion = useServiceStore((state) => state.isYesNoQuestion);
+  const rules = useServiceStore((state) => state.rules);
+  const node = useServiceStore((state) => state.selectedNode);
+  const seedGroup = node?.data?.rules || (Array.isArray(rules) && rules.length > 0 ? rules : undefined);
+
+  return (
+    <Track direction="vertical" align="stretch">
+      <Track gap={16} className="flow-body-padding">
+        <Track>
+          <SwitchBox
+            label=""
+            name=""
+            hideLabel
+            onCheckedChange={useServiceStore.getState().setIsYesNoQuestion}
+            checked={isYesNoQuestion}
+          />
+        </Track>
+        <span>{t('serviceFlow.popup.yesNoQuestion')}</span>
+      </Track>
+      {isYesNoQuestion && <YesNoPopupContent />}
+      {!isYesNoQuestion && (
+        <RuleBuilder
+          onChange={(group: Group) => useServiceStore.getState().changeRulesNode(group.children)}
+          seedGroup={seedGroup}
+        />
+      )}
+    </Track>
+  );
+};
+
+export default ConditionBuilderContent;

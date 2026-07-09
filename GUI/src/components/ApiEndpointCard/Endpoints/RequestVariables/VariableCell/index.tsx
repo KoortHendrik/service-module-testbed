@@ -1,0 +1,48 @@
+import { Row } from '@tanstack/react-table';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { FormInput } from '../../../..';
+import { RequestVariablesTableColumns } from '../../../../../types/request-variables';
+
+type VariableCellProps = {
+  row: Row<RequestVariablesTableColumns>;
+  updateRowVariable: (id: string, variable: string) => void;
+  variable: string;
+  onValueChange: (rowId: string, value: string) => void;
+};
+
+const VariableCell: React.FC<VariableCellProps> = ({ row, updateRowVariable, variable, onValueChange }) => {
+  const { t } = useTranslation();
+  const [inputValue, setInputValue] = useState(variable);
+
+  if (!row.original) return <></>;
+  return row.original.isNameEditable ? (
+    <FormInput
+      style={{ borderRadius: '4px' }}
+      name={`endpoint-variable-${row.id}`}
+      label=""
+      onChange={(e) => {
+        const value = e.target.value;
+        onValueChange(row.id, value);
+        setInputValue(value);
+        updateRowVariable(row.id, value);
+      }}
+      value={inputValue}
+      placeholder={t('newService.endpoint.variable') + '..'}
+    />
+  ) : (
+    <div style={{ paddingLeft: 40 * row.original.nestedLevel }}>
+      <FormInput
+        style={{ borderRadius: '4px', backgroundColor: '#f5f5f7', cursor: 'default' }}
+        name={`endpoint-variable-readonly-${row.id}`}
+        label=""
+        value={row.original.variable ?? ''}
+        readOnly
+        onChange={() => {}}
+      />
+    </div>
+  );
+};
+
+export default VariableCell;
