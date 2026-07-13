@@ -1,3 +1,4 @@
+# kratest profile-grounded demo: touch services/add without changing validation behavior
 declaration:
   call: declare
   version: 0.1
