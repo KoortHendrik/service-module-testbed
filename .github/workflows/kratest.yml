@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ vars.KRATEST_REPO }}
-          ref: 1ad045dee087550b495e852f1185f05100e26fc4
+          ref: 1f297e0fb0747beaa71e3912968be72794468c9c
           path: kratest-agent
           token: ${{ secrets.KRATEST_TOKEN }}
 
