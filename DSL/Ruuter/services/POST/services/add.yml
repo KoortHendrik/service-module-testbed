@@ -48,7 +48,7 @@ declaration:
 
 check_for_required_parameters:
   switch:
-    - condition: ${incoming.body.name == null || incoming.body.description == null || incoming.body.type == null || incoming.body.content == null || incoming.body.serviceId == null || incoming.body.isCommon == null || incoming.body.structure == null}
+    - condition: ${incoming.body.name == null || incoming.body.description == null || incoming.body.type == null || incoming.body.content == null || incoming.body.serviceId == null || incoming.body.isCommon == null || incoming.body.structure == null || incoming.body.state == null}
       next: return_incorrect_request
   next: extract_request_data
 
