@@ -83,6 +83,7 @@ return_value:
   headers:
     Set-Cookie: ${setCookie}
     X-Session-Expires-In: ${session_result.response.body[0].value}
+    X-Auth-Contract-Version: "2"
   return: ${cookie_result.response.body.token}
   next: end 
 
