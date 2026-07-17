@@ -161,6 +161,7 @@ return_ok:
   status: 200
   headers:
     X-Service-Contract-Version: "2"
+    X-Service-Contract-Revision: "3"
   return: ${results.response.body.message}
   next: end
 
