@@ -8,44 +8,44 @@ jobs:
   kratest:
     if: ${{ !startsWith(github.head_ref, 'kratest/') }}
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout source repo
         uses: actions/checkout@v4
 
-      # Requires repository variable KRATEST_REPO: Settings → Secrets and variables → Actions → Variables
-      - name: Checkout kratest
+      - name: Checkout test-intelligence monorepo
         uses: actions/checkout@v4
         with:
-          repository: ${{ vars.KRATEST_REPO }}
-          ref: 1ad045dee087550b495e852f1185f05100e26fc4
-          path: kratest-agent
+          repository: KoortHendrik/burokratt-test-intelligence
+          ref: 9ccc5b541ec5bc8e39066b22dc337c6cebf8d427
+          path: test-intelligence
           token: ${{ secrets.KRATEST_TOKEN }}
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install Python dependencies
-        run: pip install -e kratest-agent/
+        run: pip install -e test-intelligence/kratest/
 
       - name: Set up Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install Node dependencies
-        run: npm install
-        working-directory: kratest-agent
+        run: npm ci
+        working-directory: test-intelligence/kratest
 
       - name: Install Playwright browsers
         run: npx playwright install chromium
-        working-directory: kratest-agent
+        working-directory: test-intelligence/kratest
 
       - name: Use source repo agent config
         run: |
           if [ -f agent.config.yml ]; then
-            cp agent.config.yml kratest-agent/kratest/agent.config.yml
+            cp agent.config.yml test-intelligence/kratest/kratest/agent.config.yml
             echo "Using source repo agent.config.yml"
           else
             echo "No agent.config.yml found in source repo, using kratest default"
@@ -58,7 +58,13 @@ jobs:
           http.createServer((req, res) => {
             console.log('[Mock] Received request:', req.method, req.url);
             res.writeHead(200, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify({ response: { status: 'ok', mock: true, path: req.url } }));
+            res.end(JSON.stringify({
+              response: {
+                status: 'ok',
+                mock: true,
+                path: req.url
+              }
+            }));
           }).listen(8080);
           console.log('Mock server running on port 8080');
           " &
@@ -78,7 +84,7 @@ jobs:
       - name: Run kratest
         run: python -m kratest.main
         env:
-          PYTHONPATH: ${{ github.workspace }}/kratest-agent
+          PYTHONPATH: ${{ github.workspace }}/test-intelligence/kratest
           KRATEST_TOKEN: ${{ secrets.KRATEST_TOKEN }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           KRATEST_MODE: pr
