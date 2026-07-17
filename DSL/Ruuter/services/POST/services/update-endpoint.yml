@@ -86,6 +86,8 @@ log_index_llm_failure:
 
 return_ok:
   status: 200
+  headers:
+    X-Endpoint-Contract-Version: "2"
   return: "Endpoint updated"
   next: end
 
