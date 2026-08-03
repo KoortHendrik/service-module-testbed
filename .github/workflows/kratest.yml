@@ -1,102 +1,207 @@
-name: Kratest — generate tests for PR
+name: Kratest PR coverage
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   kratest:
-    if: ${{ !startsWith(github.head_ref, 'kratest/') }}
+    name: Analyze PR coverage
+    if: ${{ !startsWith(github.head_ref, 'kratest/pr-') && !startsWith(github.head_ref, 'kratest/source/') }}
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source repo
-        uses: actions/checkout@v4
+      - name: Checkout consumer repository
+        uses: actions/checkout@v6
+        with:
+          path: source
+          persist-credentials: false
 
       - name: Checkout test-intelligence monorepo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
-          repository: KoortHendrik/burokratt-test-intelligence
-          ref: 24b7b04abc1e7b78654f644568b4603458b19795
+          repository: ${{ vars.KRATEST_REPO }}
+          ref: ${{ vars.KRATEST_REF }}
           path: test-intelligence
           token: ${{ secrets.KRATEST_TOKEN }}
+          persist-credentials: false
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
-      - name: Install Python dependencies
-        run: pip install -e test-intelligence/kratest/
-
-      - name: Set up Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Install Node dependencies
-        run: npm ci
-        working-directory: test-intelligence/kratest
-
-      - name: Install Playwright browsers
-        run: npx playwright install chromium
-        working-directory: test-intelligence/kratest
-
-      - name: Use source repo agent config
+      - name: Install Risttee and Kratest
         run: |
-          if [ -f agent.config.yml ]; then
-            cp agent.config.yml test-intelligence/kratest/kratest/agent.config.yml
-            echo "Using source repo agent.config.yml"
-          else
-            echo "No agent.config.yml found in source repo, using kratest default"
+          python -m pip install --upgrade pip
+          python -m pip install -e test-intelligence/risttee -e test-intelligence/kratest
+
+      - name: Locate installed Risttee command
+        id: risttee
+        shell: bash
+        run: |
+          command_path="$(command -v risttee)"
+          test -n "${command_path}"
+          echo "path=${command_path}" >> "${GITHUB_OUTPUT}"
+
+      - name: Analyze pull request
+        shell: bash
+        env:
+          KRATEST_OUTPUT_DIR: ${{ runner.temp }}/kratest-report
+          KRATEST_POSITIVE_SETUP_PATH: ${{ vars.KRATEST_POSITIVE_SETUP_PATH }}
+          KRATEST_REPOSITORY_BINDING_PATH: ${{ vars.KRATEST_REPOSITORY_BINDING_PATH }}
+          KRATEST_RUNTIME_ALLOWED_HOSTS: ${{ vars.KRATEST_RUNTIME_ALLOWED_HOSTS }}
+          KRATEST_TOKEN: ${{ secrets.KRATEST_TOKEN }}
+          KRATEST_TEST_REPOSITORY_TOKEN: ${{ secrets.KRATEST_TEST_REPOSITORY_TOKEN }}
+          KRATEST_WRITE_TOKEN: ${{ secrets.KRATEST_WRITE_TOKEN }}
+          KRATEST_RUNTIME_AUTHORIZATION: ${{ secrets.KRATEST_RUNTIME_AUTHORIZATION }}
+        run: |
+          runtime_root="${RUNNER_TEMP}/kratest-runtime"
+          mkdir -p "${runtime_root}"
+          args=(
+            kratest-pr
+            --repo "${{ github.repository }}"
+            --pr-number "${{ github.event.pull_request.number }}"
+            --output-dir "${KRATEST_OUTPUT_DIR}"
+            --risttee-command "${{ steps.risttee.outputs.path }}"
+            --runtime-manifest-root "${runtime_root}"
+          )
+
+          while IFS= read -r runtime_host; do
+            if [[ -n "${runtime_host}" ]]; then
+              args+=(--runtime-allowed-host "${runtime_host}")
+            fi
+          done <<< "${KRATEST_RUNTIME_ALLOWED_HOSTS}"
+
+          if [[ -n "${KRATEST_REPOSITORY_BINDING_PATH}" ]]; then
+            binding_path="${GITHUB_WORKSPACE}/source/${KRATEST_REPOSITORY_BINDING_PATH}"
+            args+=(--repository-binding-config "${binding_path}")
           fi
 
-      - name: Start dynamic mock server
-        run: |
-          node -e "
-          const http = require('http');
-          http.createServer((req, res) => {
-            console.log('[Mock] Received request:', req.method, req.url);
-            res.writeHead(200, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify({
-              response: {
-                status: 'ok',
-                mock: true,
-                path: req.url
-              }
-            }));
-          }).listen(8080);
-          console.log('Mock server running on port 8080');
-          " &
-          sleep 2
+          if [[ -n "${KRATEST_POSITIVE_SETUP_PATH}" ]]; then
+            config_path="${GITHUB_WORKSPACE}/source/${KRATEST_POSITIVE_SETUP_PATH}"
+            if [[ -f "${config_path}" ]]; then
+              args+=(--positive-setup-config "${config_path}")
+            else
+              echo "::notice::KRATEST_POSITIVE_SETUP_PATH does not name an existing file; continuing without generation setup."
+            fi
+          fi
 
-      - name: Debug Mock endpoints
-        run: |
-          echo "=== curl /health-check ==="
-          curl -v http://localhost:8080/health-check 2>&1 || true
-          echo "=== curl /test/health-check ==="
-          curl -v http://localhost:8080/test/health-check 2>&1 || true
-          echo "=== curl /test/test-endpoint ==="
-          curl -v http://localhost:8080/test/test-endpoint 2>&1 || true
-          echo "=== curl /order/jump-with-end ==="
-          curl -v http://localhost:8080/order/jump-with-end 2>&1 || true
+          "${args[@]}"
 
-      - name: Run kratest
-        run: python -m kratest.main
+      - name: Add coverage report to job summary
+        if: ${{ always() }}
+        shell: bash
         env:
-          PYTHONPATH: ${{ github.workspace }}/test-intelligence/kratest
-          KRATEST_TOKEN: ${{ secrets.KRATEST_TOKEN }}
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          KRATEST_MODE: pr
-          PR_REPO: ${{ github.repository }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-          BASE_URL: http://localhost:8080
+          KRATEST_OUTPUT_DIR: ${{ runner.temp }}/kratest-report
+        run: |
+          report="${KRATEST_OUTPUT_DIR}/kratest-coverage.md"
+          if [[ -f "${report}" ]]; then
+            cat "${report}" >> "${GITHUB_STEP_SUMMARY}"
+          else
+            echo "Kratest did not produce a Markdown report." >> "${GITHUB_STEP_SUMMARY}"
+          fi
 
-      - name: Upload kratest log
-        if: always()
-        uses: actions/upload-artifact@v4
+      - name: Add recommendation counts to job summary
+        if: ${{ always() }}
+        shell: bash
+        env:
+          KRATEST_OUTPUT_DIR: ${{ runner.temp }}/kratest-report
+          KRATEST_RECOMMENDATIONS_ARTIFACT: kratest-recommendations-pr-${{ github.event.pull_request.number }}
+        run: |
+          recommendations="${KRATEST_OUTPUT_DIR}/kratest-recommendations.json"
+          if [[ -f "${recommendations}" ]]; then
+            python - "${recommendations}" "${KRATEST_RECOMMENDATIONS_ARTIFACT}" >> "${GITHUB_STEP_SUMMARY}" <<'PY'
+          import json
+          import sys
+          from collections import Counter
+
+          path, artifact_name = sys.argv[1:]
+          with open(path, encoding="utf-8") as source:
+              payload = json.load(source)
+          counts = Counter(item["category"] for item in payload["recommendations"])
+
+          print("## Kratest recommendations")
+          print()
+          if counts:
+              for category in sorted(counts):
+                  print(f"- {category}: {counts[category]}")
+          else:
+              print("- No gap recommendations.")
+          print(f"- Full details: `{artifact_name}` artifact")
+          print()
+          PY
+          fi
+
+      - name: Upload Kratest coverage report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
         with:
-          name: kratest-log
-          path: kratest.log
+          name: kratest-coverage-pr-${{ github.event.pull_request.number }}
+          path: |
+            ${{ runner.temp }}/kratest-report/kratest-coverage.json
+            ${{ runner.temp }}/kratest-report/kratest-coverage.md
+          if-no-files-found: warn
+
+      - name: Upload Kratest generation decisions
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: kratest-generation-pr-${{ github.event.pull_request.number }}
+          path: ${{ runner.temp }}/kratest-report/kratest-generation.json
+          if-no-files-found: ignore
+
+      - name: Upload generated Playwright tests
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: kratest-generated-tests-pr-${{ github.event.pull_request.number }}
+          path: ${{ runner.temp }}/kratest-report/generated-tests/**
+          if-no-files-found: ignore
+
+      - name: Upload Kratest recommendations
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: kratest-recommendations-pr-${{ github.event.pull_request.number }}
+          path: |
+            ${{ runner.temp }}/kratest-report/kratest-recommendations.json
+            ${{ runner.temp }}/kratest-report/kratest-recommendations.md
+          # BLOCKED runs legitimately have no recommendation files; do not warn.
+          if-no-files-found: ignore
+
+      - name: Upload Kratest coverage-comment publication status
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: kratest-publication-pr-${{ github.event.pull_request.number }}
+          path: ${{ runner.temp }}/kratest-report/kratest-publication.json
+          if-no-files-found: ignore
+
+      - name: Upload Kratest generated-test PR publication status
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: kratest-generated-test-pr-publication-pr-${{ github.event.pull_request.number }}
+          path: ${{ runner.temp }}/kratest-report/kratest-generated-test-pr-publication.json
+          if-no-files-found: ignore
+
+      - name: Upload Kratest runtime validation status
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: kratest-runtime-validation-pr-${{ github.event.pull_request.number }}
+          path: ${{ runner.temp }}/kratest-report/kratest-runtime-validation.json
+          if-no-files-found: ignore
+
+      - name: Upload Kratest PR HEAD health and liveness status
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: kratest-pr-head-health-liveness-pr-${{ github.event.pull_request.number }}
+          path: ${{ runner.temp }}/kratest-report/kratest-pr-head-health-liveness.json
           if-no-files-found: ignore
