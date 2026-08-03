@@ -160,6 +160,7 @@ return_ok:
   headers:
     X-Service-Contract-Version: "2"
     X-Service-Contract-Revision: "3"
+    X-Service-Contract-Release: "1"
     X-Service-Contract-Schema-Version: "1"
   reloadDsl: true
   status: 200
