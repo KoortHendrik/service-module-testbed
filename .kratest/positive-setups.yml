@@ -1,0 +1,34 @@
+positive_setups:
+  - source_file: DSL/Ruuter/services/POST/services/add.yml
+    method: POST
+    path: /services/add
+    body:
+      name:
+        value: "kratest-demo-service"
+      description:
+        value: "Demo service created by kratest positive-setup"
+      type:
+        value: "POST"
+      content:
+        value: '{"steps":[]}'
+      serviceId:
+        value: "kratest-demo-service-id"
+      isCommon:
+        value: false
+      structure:
+        value:
+          steps: []
+      entities:
+        value:
+          date: "DATE"
+      examples:
+        value:
+          greeting:
+            - "Hello"
+            - "Hi"
+      state:
+        value: "draft"
+      updateServiceDb:
+        value: false
+    expected_response:
+      status: 200
