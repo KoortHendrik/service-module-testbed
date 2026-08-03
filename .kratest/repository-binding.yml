@@ -3,8 +3,8 @@ source_repository: KoortHendrik/service-module-testbed
 test_repository:
   repo: KoortHendrik/TDD-Playwright
   base_ref: dev
-evidence_root: tests/api/service-module
-generated_root: tests/api/service-module/generated
+  evidence_root: tests/api/service-module
+  generated_root: tests/api/service-module/generated
 runtime:
   provider: external
   manifest_path: runtime/runtime-manifest.json
