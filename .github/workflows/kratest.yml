@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: KoortHendrik/burokratt-test-intelligence
-          ref: 9ccc5b541ec5bc8e39066b22dc337c6cebf8d427
+          ref: 24b7b04abc1e7b78654f644568b4603458b19795
           path: test-intelligence
           token: ${{ secrets.KRATEST_TOKEN }}
 
