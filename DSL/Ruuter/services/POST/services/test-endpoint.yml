@@ -115,6 +115,8 @@ save_result_no_schema:
 
 return_result:
   status: 200
+  headers:
+    X-Tested-Status-Code: ${String(statusCode)}
   return: "ok"
   next: end
 

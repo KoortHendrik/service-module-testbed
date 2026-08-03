@@ -63,6 +63,8 @@ calculate_difference:
 
 return_value:
   status: 200
+  headers:
+    X-Date-Difference-Output-Type: ${outputType}
   return: ${result.response.body}
   next: end
 
