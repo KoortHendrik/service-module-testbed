@@ -1,0 +1,69 @@
+declaration:
+  call: declare
+  version: 0.1
+  description: "Validates endpoint draft data before it is saved or tested"
+  method: post
+  accepts: json
+  returns: json
+  namespace: service
+  allowlist:
+    body:
+      - field: endpointId
+        type: string
+        description: "Endpoint UUID"
+      - field: name
+        type: string
+        description: "Endpoint name"
+      - field: type
+        type: string
+        description: "Endpoint type"
+      - field: serviceId
+        type: string
+        description: "Service UUID"
+      - field: definitions
+        type: object
+        description: "Endpoint OpenAPI or request definitions"
+      - field: testRequest
+        type: object
+        description: "Endpoint test request configuration"
+      - field: description
+        type: string
+        description: "Endpoint description"
+
+check_required_identity:
+  switch:
+    - condition: ${incoming.body == null || incoming.body.name == null || incoming.body.type == null}
+      next: return_missing_identity
+  next: check_required_draft_content
+
+check_required_draft_content:
+  switch:
+    - condition: ${incoming.body.definitions == null && incoming.body.testRequest == null}
+      next: return_missing_draft_content
+  next: check_endpoint_type
+
+check_endpoint_type:
+  switch:
+    - condition: ${incoming.body.type.toUpperCase() === 'GET' || incoming.body.type.toUpperCase() === 'POST' || incoming.body.type.toUpperCase() === 'PUT' || incoming.body.type.toUpperCase() === 'DELETE'}
+      next: return_ok
+  next: return_unknown_type
+
+return_ok:
+  status: 200
+  return: "Endpoint draft is valid"
+  next: end
+
+return_missing_identity:
+  status: 400
+  return: "Endpoint draft name and type are required"
+  next: end
+
+return_missing_draft_content:
+  status: 400
+  return: ${"Endpoint draft " + incoming.body.name + " must include definitions or a test request"}
+  next: end
+
+return_unknown_type:
+  status: 400
+  return: ${"Unsupported endpoint type " + incoming.body.type}
+  next: end

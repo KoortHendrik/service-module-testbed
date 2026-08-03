@@ -116,6 +116,8 @@ append_response:
   next: process_next_request
 
 return_responses:
+  headers:
+    X-Explained-Request-Count: ${requests.length}
   return: ${responses.splice(1 , responses.length - 1)}
   next: end
 
