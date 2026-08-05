@@ -19,6 +19,37 @@ llm:
 runner:
   timeout: 300            # max seconds to wait for playwright test execution
 
+# Explicit positive setups for kratest's M4 positive-setup / positive-diff-test
+# pipeline. Surface identity (source_file/method/path) must match the risttee
+# profile exactly — kratest's resolver does exact string matching.
+positive_setups:
+  - source_file: DSL/Ruuter/services/POST/services/add.yml
+    method: POST
+    path: /services/add
+    body:
+      name:
+        value: "kratest-demo-service"
+      description:
+        value: "Demo service created by kratest positive-setup for M4 pipeline validation"
+      type:
+        value: "POST"
+      content:
+        value: "{\"steps\":[]}"
+      serviceId:
+        value: "kratest-demo-service-id"
+      isCommon:
+        value: false
+      structure:
+        value: { "steps": [] }
+      entities:
+        value: { "date": "DATE" }
+      examples:
+        value: { "greeting": ["Hello", "Hi"] }
+      state:
+        value: "draft"
+      updateServiceDb:
+        value: false
+
 reporter:
   pr_comment: true
   # github_check requires a GitHub App token, not a PAT.

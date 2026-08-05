@@ -157,10 +157,13 @@ check_result:
   next: return_bad_request
 
 return_ok:
-  reloadDsl: true
-  status: 200
   headers:
     X-Service-Contract-Version: "2"
+    X-Service-Contract-Revision: "3"
+    X-Service-Contract-Release: "1"
+    X-Service-Contract-Schema-Version: "1"
+  reloadDsl: true
+  status: 200
   return: ${results.response.body.message}
   next: end
 
