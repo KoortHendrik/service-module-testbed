@@ -54,7 +54,9 @@ jobs:
           KRATEST_OUTPUT_DIR: ${{ runner.temp }}/kratest-report
           KRATEST_POSITIVE_SETUP_PATH: ${{ vars.KRATEST_POSITIVE_SETUP_PATH }}
           KRATEST_REPOSITORY_BINDING_PATH: ${{ vars.KRATEST_REPOSITORY_BINDING_PATH }}
+          KRATEST_LLM_SMOKE_SHADOW_ENABLED: ${{ vars.KRATEST_LLM_SMOKE_SHADOW_ENABLED }}
           KRATEST_RUNTIME_ALLOWED_HOSTS: ${{ vars.KRATEST_RUNTIME_ALLOWED_HOSTS }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
           KRATEST_TOKEN: ${{ secrets.KRATEST_TOKEN }}
           KRATEST_TEST_REPOSITORY_TOKEN: ${{ secrets.KRATEST_TEST_REPOSITORY_TOKEN }}
           KRATEST_WRITE_TOKEN: ${{ secrets.KRATEST_WRITE_TOKEN }}
@@ -153,6 +155,17 @@ jobs:
         with:
           name: kratest-generation-pr-${{ github.event.pull_request.number }}
           path: ${{ runner.temp }}/kratest-report/kratest-generation.json
+          if-no-files-found: ignore
+
+      - name: Upload Kratest LLM smoke shadow report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: kratest-generation-shadow-pr-${{ github.event.pull_request.number }}
+          path: |
+            ${{ runner.temp }}/kratest-report/kratest-generation-shadow.json
+            ${{ runner.temp }}/kratest-report/kratest-generation-shadow.md
+          # Shadow mode is opt-in, so missing files are legitimate.
           if-no-files-found: ignore
 
       - name: Upload generated Playwright tests
